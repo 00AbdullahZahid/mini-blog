@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+// import { getallposts } from "lib/posts"
 
 const posts = [
   { slug: "hello-world", title: "Hello World", excerpt: "My first post!", content: "This is my very first post. Excited to be here!" },

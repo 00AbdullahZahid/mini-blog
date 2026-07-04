@@ -1,12 +1,12 @@
 import { Post } from "../../types";
 
 export default async function PostPage({
-  params, }: { params: Promise<{ slug: string }>; }) {
+  params, }: { params: Promise<{ userId: number }>; }) {
 
-  const { slug } = await params;
+  const { userId } = await params;
   const res = await fetch("http://localhost:3000/api/posts");
   const posts: Post[] = await res.json();
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p) => p.userId === userId);
 
   if (!post) {
     return <div className="p-8">Post not found.</div>;
@@ -15,7 +15,7 @@ export default async function PostPage({
   return (
     <main className="p-8 max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-center">{post.title}</h1>
-      <p className="text-gray-700 leading-relaxed text-center">{post.content}</p>
+      <p className="text-gray-700 leading-relaxed text-center">{post.body}</p>
     </main>
   );
 }

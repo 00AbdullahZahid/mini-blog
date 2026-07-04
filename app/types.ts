@@ -1,6 +1,6 @@
 export type Post = {
-  slug: string;
+  userId: number;
+  id: number;
   title: string;
-  excerpt: string;
-  content: string;
+  body: string;
 }
