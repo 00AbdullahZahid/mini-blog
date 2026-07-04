@@ -4,7 +4,7 @@ export default async function PostPage({
   params, }: { params: Promise<{ userId: number }>; }) {
 
   const { userId } = await params;
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts: Post[] = await res.json();
   const post = posts.find((p) => p.userId === userId);
 
