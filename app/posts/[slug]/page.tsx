@@ -1,12 +1,12 @@
 import { Post } from "../../types";
 
 export default async function PostPage({
-  params, }: { params: Promise<{ userId: number }>; }) {
+  params, }: { params: Promise<{ id: number }>; }) {
 
-  const { userId } = await params;
+  const { id } = await params;
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts: Post[] = await res.json();
-  const post = posts.find((p) => p.userId === userId);
+  const post = posts.find((p) => p.id === id);
 
   if (!post) {
     return <div className="p-8">Post not found.</div>;
