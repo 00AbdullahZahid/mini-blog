@@ -1,6 +1,8 @@
 import "./globals.css";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
+import { MdOutlineContactSupport } from "react-icons/md";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { ImBlogger } from "react-icons/im";
 
 export default function RootLayout({
@@ -17,6 +19,12 @@ export default function RootLayout({
           </Link>
           <Link href="/blogs" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
             <ImBlogger /> Blogs
+          </Link>
+          <Link href="/about" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
+            <AiOutlineInfoCircle /> About Us
+          </Link>
+          <Link href="/contact" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
+            <MdOutlineContactSupport /> Contact Us
           </Link>
         </header>
         {children}
