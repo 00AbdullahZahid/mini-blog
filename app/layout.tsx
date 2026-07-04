@@ -15,7 +15,7 @@ export default function RootLayout({
           <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
             <FaHome/> Home
           </Link>
-          <Link href="http://localhost:3000/blogs" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
+          <Link href="/blogs" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
             <ImBlogger /> Blogs
           </Link>
         </header>
