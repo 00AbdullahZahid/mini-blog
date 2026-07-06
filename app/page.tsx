@@ -1,16 +1,11 @@
-import { Post } from "./types";
-
-export default async function Home() {
-
+export default function Home() {
   return (
     <main className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Home Page</h1>
-      <div>
-        <p className="text-center">
-          This ia a paragraph for the Home Page of the Mini Blog Website!<br /> 
-          This is a small blog I built while learning Next.js — covering things<br />
-          like React fundamentals, routing, APIs, and everything in between.<br />
-          It's a work in progress, just like my understanding of web development.
+      <h1 className="mb-6 text-center text-3xl font-bold">My Blog</h1>
+      <div className="mx-auto max-w-2xl rounded-xl bg-white p-6 shadow-sm">
+        <p className="text-center text-lg text-gray-700">
+          Welcome to My Blog, a small Next.js project built to explore routing, dynamic pages,
+          client components, and form handling.
         </p>
       </div>
     </main>

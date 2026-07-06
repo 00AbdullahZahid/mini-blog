@@ -2,41 +2,76 @@
 
 import { type FormEvent } from 'react';
 
+type ContactEntry = {
+  name: string;
+  email: string;
+  message: string;
+};
+
 export default function Contact() {
-    function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        debugger
-        e.preventDefault();
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const name = formData.get('name');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get('name')?.toString().trim() ?? '';
+    const email = formData.get('email')?.toString().trim() ?? '';
+    const message = formData.get('message')?.toString().trim() ?? '';
 
-        if (typeof name === 'string' && name.trim()) {
-            alert(`Thanks for contacting us, ${name}!`);
-        } else {
-            alert('Please enter your information.');
-        }
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email, and message.');
+      return;
     }
 
-    return (
-        
-            <div className="max-w-md mx-auto mt-10 p-10 bg-black rounded-xl shadow-md border border-gray-100 mb-10">
-                <h2 className="mb-5 text-center font-bold text-3xl">Contact Form</h2>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    <label htmlFor="name" className="block text-sm font-semibold text-white-700 mb-1">Name:</label>
-                    <input id="name" name="name" placeholder="Your name" className="w-full mx-auto p-3 rounded-lg border border-gray-100"/>
+    const existing = JSON.parse(localStorage.getItem('contacts') || '[]') as ContactEntry[];
+    const user: ContactEntry = { name, email, message };
 
-                    <label htmlFor="email" className="block text-sm font-semibold text-white-700 mb-1">Email:</label>
-                    <input id="email" name="email" placeholder="Your Email" className="w-full mx-auto p-3 rounded-lg border border-gray-100"/>
+    existing.push(user);
+    localStorage.setItem('contacts', JSON.stringify(existing));
 
-                    <label htmlFor="Age" className="block text-sm font-semibold text-white-700 mb-1">Age:</label>
-                    <select className="w-full mx-auto p-3 rounded-lg border border-gray-100">
-                        <option value="Minor" className="bg-black">Minor</option>
-                        <option value="Adult" className="bg-black">Adult</option>
-                    </select>
+    alert(`Thanks for contacting us, ${name}!`);
+    form.reset();
+  }
 
-                    <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 font-medium py-2 px-4 rounded-lg">Submit</button>
-                </form>
-            </div>
-    );
+  return (
+    <div className="mx-auto mb-10 mt-10 max-w-md rounded-xl border border-gray-100 bg-black p-10 shadow-md">
+      <h2 className="mb-5 text-center text-3xl font-bold">Contact Form</h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <label htmlFor="name" className="mb-1 block text-sm font-semibold text-white">
+          Name:
+        </label>
+        <input
+          id="name"
+          name="name"
+          placeholder="Your name"
+          className="mx-auto w-full rounded-lg border border-gray-100 p-3"
+        />
+
+        <label htmlFor="email" className="mb-1 block text-sm font-semibold text-white">
+          Email:
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          className="mx-auto w-full rounded-lg border border-gray-100 p-3"
+        />
+
+        <label htmlFor="message" className="mb-1 block text-sm font-semibold text-white">
+          Message:
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your message"
+          className="mx-auto min-h-24 w-full rounded-lg border border-gray-100 p-3"
+        />
+
+        <button type="submit" className="w-full rounded-lg bg-gray-700 px-4 py-2 font-medium hover:bg-gray-800">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 }

@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { ImBlogger } from "react-icons/im";
+import { FiList } from "react-icons/fi";
 
 export default function RootLayout({
   children,
@@ -25,6 +26,9 @@ export default function RootLayout({
           </Link>
           <Link href="/contact" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
             <MdOutlineContactSupport /> Contact Us
+          </Link>
+          <Link href="/dashboard" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
+            <FiList /> Submissions
           </Link>
         </header>
         {children}
