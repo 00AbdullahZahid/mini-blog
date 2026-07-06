@@ -1,21 +1,12 @@
-import { Post } from "../../types";
+import { getPosts } from "../../lib/blogs";
 
 export default async function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-
   const { slug } = await params;
-  const res = await fetch("https://jsonfakery.com/blogs", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return <div className="p-8 text-center">Failed to fetch post.</div>;
-  }
-
-  const allPosts: Post[] = await res.json();
+  const allPosts = await getPosts();
   const posts = allPosts.slice(0, 9);
   const post = posts.find(
     (p) => p.id === slug

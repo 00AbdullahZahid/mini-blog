@@ -1,23 +1,9 @@
 import Link from "next/link";
-import { Post } from "../types";
 import { FaBook } from "react-icons/fa";
+import { getPosts } from "../lib/blogs";
 
 export default async function Blogs() {
-  const res = await fetch("https://jsonfakery.com/blogs", {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    return (
-      <main className="p-8">
-        <h1 className="text-center text-2xl">
-          Failed to load blogs.
-        </h1>
-      </main>
-    );
-  }
-
-  const allPosts: Post[] = await res.json();
+  const allPosts = await getPosts();
   const posts = allPosts.slice(0, 9);
 
   return (
