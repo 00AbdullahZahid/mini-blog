@@ -16,11 +16,12 @@ export default function LoginPage() {
       body: JSON.stringify({ password }),
     });
 
+    const data = await res.json();
+
     if (res.ok) {
       router.push('/dashboard');
-      router.refresh();
     } else {
-      setError('Invalid password');
+      setError(data?.error || 'Invalid password');
     }
   };
 
