@@ -2,6 +2,8 @@ import Link from "next/link";
 import { FaBook } from "react-icons/fa";
 import { getPosts } from "../lib/blogs";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Blogs() {
   const allPosts = await getPosts();
   const posts = allPosts.slice(0, 9);
