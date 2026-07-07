@@ -37,7 +37,7 @@ export async function getPosts(): Promise<Post[]> {
   try {
     const res = await fetch('https://jsonfakery.com/blogs', {
       headers: { Accept: 'application/json' },
-      next: { revalidate: 60 },
+      next: { revalidate: 30},
     });
 
     if (!res.ok) {

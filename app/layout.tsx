@@ -28,7 +28,7 @@ export default function RootLayout({
             <MdOutlineContactSupport /> Contact Us
           </Link>
           <Link href="/dashboard" className="flex items-center gap-2 text-gray-300 hover:text-white font-bold">
-            <FiList /> Submissions
+            <FiList /> Dashboard
           </Link>
         </header>
         {children}
