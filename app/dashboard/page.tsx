@@ -12,6 +12,11 @@ type ContactEntry = {
 export default function Submissions() {
   const [users, setUsers] = useState<ContactEntry[]>([]);
 
+  const handleLogout = () => {
+    document.cookie = 'page_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    window.location.href = '/login';
+  };
+
   const handleDelete = (indexToRemove: number) => {
     const updatedUsers = users.filter((_, index) => index !== indexToRemove);
     setUsers(updatedUsers);
@@ -41,13 +46,21 @@ export default function Submissions() {
 
   return (
     <div className="p-6">
-      <h1 className="mb-5 text-center text-2xl font-bold">Contact submissions</h1>
-      <p>
+      <div className="mb-5">
+        <h1 className="text-2xl text-center font-bold">Contact submissions</h1>
+      </div>
+      <p className="mb-5 flex items-center justify-between">
         <button
           className="mb-4 rounded-lg border border-gray-300 bg-gray-600 p-2 text-center dark:border-gray-700"
           onClick={() => handleExport()}
         >
           Export To Excel
+        </button>
+        <button
+          className="rounded-lg border border-gray-300 bg-gray-600 p-2 text-center dark:border-gray-700"
+          onClick={handleLogout}
+        >
+          Logout
         </button>
       </p>
 
