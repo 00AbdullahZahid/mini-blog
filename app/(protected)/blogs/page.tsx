@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FaBook } from "react-icons/fa";
-import { getPosts } from "../lib/blogs";
+import { getPosts } from "../../lib/blogs";
 
 export const dynamic = 'force-dynamic';
 

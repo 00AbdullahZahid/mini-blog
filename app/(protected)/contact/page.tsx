@@ -1,6 +1,7 @@
 'use client';
 
-import { type FormEvent } from 'react';
+import { type FormEvent, useState } from 'react';
+import Modal from "../../components/Modal";
 
 type ContactEntry = {
     name: string;
@@ -10,6 +11,9 @@ type ContactEntry = {
 };
 
 export default function Contact() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
@@ -31,7 +35,8 @@ export default function Contact() {
         existing.push(user);
         localStorage.setItem('contacts', JSON.stringify(existing));
 
-        alert(`Thanks for contacting us, ${name}!`);
+        setModalMessage(`Thanks for contacting us, ${name}!`);
+        setIsModalOpen(true);
         form.reset();
     }
 
@@ -90,6 +95,10 @@ export default function Contact() {
                     Submit
                 </button>
             </form>
+
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <p className="text-lg font-medium text-white">{modalMessage}</p>
+            </Modal>
         </div>
-    );  
+    );
 }

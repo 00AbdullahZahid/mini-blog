@@ -1,5 +1,4 @@
 import "./globals.css";
-import SharedLayout from "./components/SharedLayout";
 
 export default function RootLayout({
   children,
@@ -9,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SharedLayout>{children}</SharedLayout>
+        {children}
       </body>
     </html>
   );

@@ -1,9 +1,37 @@
-import "../../globals.css";
+"use client";
 
-export default function PostLayout({
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { MdOutlineContactSupport } from "react-icons/md";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { ImBlogger } from "react-icons/im";
+
+export default function SharedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="min-h-screen">{children}</div>;
+
+  return (
+    <>
+      <header className="flex items-center justify-center gap-6 bg-blue-900 p-4 text-white">
+        <Link href="/blogs" className="flex items-center gap-2 font-bold text-gray-300 hover:text-white">
+          <ImBlogger /> Blogs
+        </Link>
+        <Link href="/about" className="flex items-center gap-2 font-bold text-gray-300 hover:text-white">
+          <AiOutlineInfoCircle /> About Us
+        </Link>
+        <Link href="/contact" className="flex items-center gap-2 font-bold text-gray-300 hover:text-white">
+          <MdOutlineContactSupport /> Contact Us
+        </Link>
+        <Link href="/login" className="rounded-lg border bg-gray-700 p-2 font-bold text-gray-300 hover:text-white">
+          Login To Dashboard
+        </Link>
+      </header>
+      {children}
+      <footer className="bg-blue-900 p-4 text-center text-white">
+        © 2026 My Blog
+      </footer>
+    </>
+  );
 }

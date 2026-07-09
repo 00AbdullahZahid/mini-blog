@@ -12,19 +12,10 @@ export default function SharedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const showSharedLayout = pathname !== "/login";
-
-  if (!showSharedLayout) {
-    return <>{children}</>;
-  }
 
   return (
     <>
       <header className="flex items-center justify-center gap-6 bg-blue-900 p-4 text-white">
-        <Link href="/" className="flex items-center gap-2 font-bold text-gray-300 hover:text-white">
-          <FaHome /> Home
-        </Link>
         <Link href="/blogs" className="flex items-center gap-2 font-bold text-gray-300 hover:text-white">
           <ImBlogger /> Blogs
         </Link>
