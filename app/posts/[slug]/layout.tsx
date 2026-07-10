@@ -1,16 +1,15 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { ImBlogger } from "react-icons/im";
+import { sleep } from "../../lib/sleep";
 
-export default function SharedLayout({
+export default async function SharedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  await sleep(600);
 
   return (
     <>

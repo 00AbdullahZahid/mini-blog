@@ -1,4 +1,7 @@
-export default function Home() {
+import { sleep } from './lib/sleep';
+
+export default async function Home() {
+  await sleep(400);
   return (
     <main className="p-8">
       <h1 className="mb-6 text-center text-3xl font-bold">My Blog</h1>

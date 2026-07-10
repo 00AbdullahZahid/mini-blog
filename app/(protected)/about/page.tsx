@@ -1,4 +1,9 @@
-export default function About() {
+
+import { sleep } from "../../lib/sleep";
+
+export default async function About() {
+  await sleep(400);
+
   return (
     <main className="p-8">
       <h1 className="mb-6 text-center text-3xl font-bold">About Us</h1>

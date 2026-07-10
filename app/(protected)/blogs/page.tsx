@@ -3,10 +3,13 @@ import { FaBook } from "react-icons/fa";
 import { getPosts } from "../../lib/blogs";
 
 export const dynamic = 'force-dynamic';
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default async function Blogs() {
+  await delay(2000); 
   const allPosts = await getPosts();
   const posts = allPosts.slice(0, 9);
+  
 
   return (
     <main className="p-8">

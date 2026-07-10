@@ -11,12 +11,20 @@ type ContactEntry = {
 };
 
 export default function Submissions() {
-  const [users, setUsers] = useState<ContactEntry[]>([]);
+  const [users, setUsers] = useState<ContactEntry[]>([
+    {
+      name: "Ali",
+      email: "ali@gmail.com",
+      message: "Hello",
+      age: "20",
+    },
+  ]);
 
   const handleLogout = () => {
     document.cookie = 'page_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     window.location.href = '/login';
   };
+  console.log('users',users)
 
   const handleDelete = (indexToRemove: number) => {
     const updatedUsers = users.filter((_, index) => index !== indexToRemove);
@@ -26,7 +34,7 @@ export default function Submissions() {
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('contacts') || '[]') as ContactEntry[];
-    setUsers(stored);
+    setUsers([...users, ...stored]);
   }, []);
 
   const handleSave = (index: number, updated: ContactEntry) => {
@@ -89,22 +97,22 @@ export default function Submissions() {
             <tbody>
               {users.map((user, index) => (
                 <tr className="border border-gray-300 p-3 dark:border-gray-700" key={`${user.email}-${index}`}>
-                      <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.name}</td>
-                      <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.email}</td>
-                      <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.message}</td>
-                      <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 text-center dark:border-gray-700">{user.age}</td>
-                      <td className="flex items-center justify-center gap-2 p-1">
-                        <EditContactModal
-                          item={user}
-                          onSave={(updated) => handleSave(index, updated)}
-                        />
-                        <button
-                          className="rounded-lg border border-gray-300 bg-gray-600 px-3 py-2 text-white"
-                          onClick={() => handleDelete(index)}
-                        >
-                          Delete
-                        </button>
-                      </td>
+                  <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.name}</td>
+                  <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.email}</td>
+                  <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 dark:border-gray-700">{user.message}</td>
+                  <td className="rounded-lg border border-gray-300 bg-gray-600 p-4 text-center dark:border-gray-700">{user.age}</td>
+                  <td className="flex items-center justify-center gap-2 p-1">
+                    <EditContactModal
+                      item={user}
+                      onSave={(updated) => handleSave(index, updated)}
+                    />
+                    <button
+                      className="rounded-lg border border-gray-300 bg-gray-600 px-3 py-2 text-white"
+                      onClick={() => handleDelete(index)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
